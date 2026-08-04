@@ -86,9 +86,6 @@ export function ProductCard({ product, index = 0, priority = false }: ProductCar
               </span>
             )}
           </div>
-          <span className="rounded-full bg-brand-off-white px-2 py-0.5 text-[11px] font-semibold text-brand-gray-700 border border-brand-border">
-            ★ {product.averageRating}
-          </span>
         </div>
       </div>
     </motion.article>

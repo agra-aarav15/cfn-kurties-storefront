@@ -54,7 +54,6 @@ export function ProductJsonLd({ product }: { product: Product }) {
     name: product.name,
     description: product.shortDescription,
     image: product.images.map((i) => i.src),
-    sku: product.sku,
     brand: { "@type": "Brand", name: siteConfig.name },
     offers: {
       "@type": "Offer",
@@ -67,13 +66,6 @@ export function ProductJsonLd({ product }: { product: Product }) {
           : "https://schema.org/OutOfStock",
       itemCondition: "https://schema.org/NewCondition",
     },
-    ...(product.averageRating > 0 && {
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: product.averageRating,
-        reviewCount: product.reviewCount || 1,
-      },
-    }),
   };
   return (
     <script
