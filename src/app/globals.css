@@ -1,26 +1,140 @@
+/**
+ * CFN Kurties global styles — design tokens, base, utilities.
+ * Tailwind v4 with brand theme (black / white / gold).
+ */
+
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Minimalist 3-Color Palette (White, Soft Black, Muted Sand Accent) */
+  --color-brand-black: #111111;
+  --color-brand-black-soft: #1e1e1e;
+  --color-brand-black-muted: #2d2d2d;
+  --color-brand-white: #ffffff;
+  --color-brand-off-white: #faf9f6;
+  --color-brand-cream: #f4f3ef;
+  --color-brand-gold: #c5a880;
+  --color-brand-rose: #111111;
+  --color-brand-amber: #c5a880;
+  --color-brand-gray-50: #fafaf9;
+  --color-brand-gray-100: #f4f3f0;
+  --color-brand-gray-200: #e8e6e1;
+  --color-brand-gray-300: #d6d3cc;
+  --color-brand-gray-400: #a39f96;
+  --color-brand-gray-500: #736f68;
+  --color-brand-gray-600: #54514b;
+  --color-brand-gray-700: #383632;
+  --color-brand-gray-800: #1e1e1e;
+  --color-brand-error: #c93b3b;
+  --color-brand-success: #2b7a4b;
+  --color-brand-border: #e8e6e1;
+
+  /* Typography */
+  --font-heading: var(--font-heading), "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-sans), "Geist", ui-sans-serif, system-ui, sans-serif;
+
+  /* Shadow */
+  --shadow-stitch-diffused: 0 10px 30px -10px rgba(0, 0, 0, 0.04);
+
+  /* Spacing helpers */
+  --spacing-13: 3.25rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Base */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-brand-white);
+  color: var(--color-brand-black);
+  font-family: var(--font-sans);
+  font-feature-settings: "kern" 1, "liga" 1;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Selection */
+::selection {
+  background: color-mix(in srgb, var(--color-brand-gold) 35%, transparent);
+  color: var(--color-brand-black);
+}
+
+/* Focus visible for a11y */
+:focus-visible {
+  outline: 2px solid var(--color-brand-gold);
+  outline-offset: 2px;
+}
+
+/* Typography utilities */
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+/* Prose for product descriptions */
+.prose-product {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--color-brand-gray-600);
+}
+
+.prose-product p + p {
+  margin-top: 1rem;
+}
+
+.prose-product ul {
+  margin-top: 0.75rem;
+  list-style: disc;
+  padding-left: 1.25rem;
+}
+
+/* Hide scrollbar utility for carousels */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  background: var(--color-brand-black);
+  color: white;
+  padding: 0.75rem 1.25rem;
+}
+
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+}
+
+/* Hide Next.js dev toast/badge indicator at bottom left corner */
+nextjs-portal,
+[data-nextjs-toast],
+#nextjs-dev-tools,
+[class*="nextjs-toast"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
 }
