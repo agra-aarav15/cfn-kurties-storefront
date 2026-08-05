@@ -4,10 +4,7 @@
  */
 
 export const razorpayConfig = {
-  keyId:
-    process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID ||
-    process.env.RAZORPAY_KEY_ID ||
-    "rzp_test_1DP5mmOlF5G5ag",
+  keyId: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || process.env.RAZORPAY_KEY_ID || "",
   keySecret: process.env.RAZORPAY_KEY_SECRET || "",
   currency: "INR",
   companyName: "CFN Kurties",
