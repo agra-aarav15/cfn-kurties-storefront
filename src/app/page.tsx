@@ -33,7 +33,7 @@ export default async function HomePage() {
               {/* Left Column — 1 Large Tall Visual Frame */}
               <div className="relative aspect-[3/4] overflow-hidden rounded-2xl border border-brand-border bg-brand-off-white group cursor-pointer shadow-stitch-diffused">
                 <Image
-                  src="/images/kurti-1.jpg?v=custom_v1"
+                  src="/images/kurti-1.jpg"
                   alt={featured[0]?.name || "Designer Kurti Collection"}
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -46,7 +46,7 @@ export default async function HomePage() {
               <div className="grid grid-cols-2 gap-6 sm:gap-8">
                 <div className="relative aspect-[3/4] overflow-hidden rounded-2xl border border-brand-border bg-brand-off-white group cursor-pointer shadow-stitch-diffused">
                   <Image
-                    src="/images/kurti-2.jpg?v=custom_v1"
+                    src="/images/kurti-2.jpg"
                     alt={featured[1]?.name || "Embroidered Kurti"}
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -56,7 +56,7 @@ export default async function HomePage() {
                 </div>
                 <div className="relative aspect-[3/4] overflow-hidden rounded-2xl border border-brand-border bg-brand-off-white group cursor-pointer shadow-stitch-diffused mt-8 sm:mt-12">
                   <Image
-                    src="/images/hero-banner.jpg?v=custom_v1"
+                    src="/images/hero-banner.jpg"
                     alt={featured[2]?.name || "Festive Kurti"}
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105"

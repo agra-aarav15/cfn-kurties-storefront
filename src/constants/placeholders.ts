@@ -318,7 +318,7 @@ export const heroContent = {
   primaryCta: { label: "Explore Collection", href: "/shop" },
   secondaryCta: { label: "Discover Styles", href: "/category/new-arrivals" },
   image: {
-    src: "/images/hero-banner.jpg?v=custom_v1",
+    src: "/images/hero-banner.jpg",
     alt: "CFN Kurties hero — modern ethnic fashion",
   },
   /** Optional; enable via NEXT_PUBLIC_HERO_VIDEO_ENABLED=true and set videoSrc */
