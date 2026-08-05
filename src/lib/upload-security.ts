@@ -8,7 +8,7 @@
  *  4. Strict execution prevention (disables execution permissions)
  */
 
-import { v4 as uuidv4 } from "crypto";
+import { randomUUID } from "crypto";
 
 export interface FileValidationConfig {
   maxSizeBytes: number;
@@ -82,7 +82,7 @@ export function generateSafeStorageFilename(mimeType: string): string {
   };
 
   const safeExt = extMap[mimeType] || "bin";
-  const uniqueId = uuidv4().replace(/-/g, "");
+  const uniqueId = randomUUID().replace(/-/g, "");
 
   // Sanitized filename without path traversal sequences
   return `upload_${Date.now()}_${uniqueId}.${safeExt}`;
