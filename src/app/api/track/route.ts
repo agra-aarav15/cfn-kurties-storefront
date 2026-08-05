@@ -5,16 +5,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { trackOrderSchema } from "@/utils/validation";
 import { trackOrder } from "@/services/orders";
-import { getClientIp, rateLimit } from "@/lib/rate-limit";
+import { checkAuthenticatedRateLimit, createRateLimitResponse, getClientIp } from "@/lib/rate-limit";
 
 export async function POST(request: NextRequest) {
   const ip = getClientIp(request);
-  const limited = rateLimit(`track:${ip}`, 15, 60_000);
+  const limited = checkAuthenticatedRateLimit(ip, "track");
   if (!limited.success) {
-    return NextResponse.json(
-      { success: false, error: { message: "Too many attempts. Please wait a minute." } },
-      { status: 429 }
-    );
+    return createRateLimitResponse(limited, "Too many tracking attempts. Please wait.");
   }
 
   try {

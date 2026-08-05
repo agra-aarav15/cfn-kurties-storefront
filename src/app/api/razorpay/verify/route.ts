@@ -6,16 +6,13 @@ import { NextRequest, NextResponse } from "next/server";
 import { razorpayVerifySchema } from "@/utils/validation";
 import { verifyRazorpayPayment } from "@/services/razorpay";
 import { markOrderPaid } from "@/services/orders";
-import { getClientIp, rateLimit } from "@/lib/rate-limit";
+import { checkAuthenticatedRateLimit, createRateLimitResponse, getClientIp } from "@/lib/rate-limit";
 
 export async function POST(request: NextRequest) {
   const ip = getClientIp(request);
-  const limited = rateLimit(`rzp-verify:${ip}`, 20, 60_000);
+  const limited = checkAuthenticatedRateLimit(ip, "rzp_verify");
   if (!limited.success) {
-    return NextResponse.json(
-      { success: false, error: { message: "Too many requests" } },
-      { status: 429 }
-    );
+    return createRateLimitResponse(limited);
   }
 
   try {

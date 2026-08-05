@@ -6,16 +6,13 @@ import { NextRequest, NextResponse } from "next/server";
 import { createOrderSchema } from "@/utils/validation";
 import { createOrder } from "@/services/orders";
 import { createRazorpayOrder } from "@/services/razorpay";
-import { getClientIp, rateLimit } from "@/lib/rate-limit";
+import { checkAuthenticatedRateLimit, createRateLimitResponse, getClientIp } from "@/lib/rate-limit";
 
 export async function POST(request: NextRequest) {
   const ip = getClientIp(request);
-  const limited = rateLimit(`checkout:${ip}`, 10, 60_000);
+  const limited = checkAuthenticatedRateLimit(ip, "checkout");
   if (!limited.success) {
-    return NextResponse.json(
-      { success: false, error: { message: "Too many checkout attempts. Please wait." } },
-      { status: 429 }
-    );
+    return createRateLimitResponse(limited, "Too many checkout attempts. Please wait.");
   }
 
   try {

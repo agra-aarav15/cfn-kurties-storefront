@@ -4,16 +4,13 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import { searchProducts } from "@/services/products";
-import { getClientIp, rateLimit } from "@/lib/rate-limit";
+import { checkPublicRateLimit, createRateLimitResponse, getClientIp } from "@/lib/rate-limit";
 
 export async function GET(request: NextRequest) {
   const ip = getClientIp(request);
-  const limited = rateLimit(`search:${ip}`, 60, 60_000);
+  const limited = checkPublicRateLimit(ip, "search");
   if (!limited.success) {
-    return NextResponse.json(
-      { success: false, error: { message: "Too many requests" } },
-      { status: 429 }
-    );
+    return createRateLimitResponse(limited);
   }
 
   const q = request.nextUrl.searchParams.get("q") || "";
