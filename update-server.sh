@@ -7,7 +7,7 @@
 
 set -e
 
-SERVER_TARGET="${1:-ubuntu@cfnkurties.in}"
+SERVER_TARGET="${1:-ubuntu@140.238.240.67}"
 REMOTE_PATH="~/html/cfn-kurties-storefront"
 
 echo "======================================================================"
