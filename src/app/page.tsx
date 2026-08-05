@@ -36,6 +36,7 @@ export default async function HomePage() {
                   src="/images/kurti-1.jpg"
                   alt={featured[0]?.name || "Designer Kurti Collection"}
                   fill
+                  unoptimized
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
@@ -49,6 +50,7 @@ export default async function HomePage() {
                     src="/images/kurti-2.jpg"
                     alt={featured[1]?.name || "Embroidered Kurti"}
                     fill
+                    unoptimized
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                     sizes="(max-width: 1024px) 50vw, 25vw"
                   />
@@ -59,6 +61,7 @@ export default async function HomePage() {
                     src="/images/hero-banner.jpg"
                     alt={featured[2]?.name || "Festive Kurti"}
                     fill
+                    unoptimized
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                     sizes="(max-width: 1024px) 50vw, 25vw"
                   />

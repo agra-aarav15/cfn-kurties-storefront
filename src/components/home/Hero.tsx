@@ -19,6 +19,7 @@ export function Hero() {
           alt={heroContent.image.alt}
           fill
           priority
+          unoptimized
           sizes="100vw"
           className="object-cover object-center opacity-75 transition-transform duration-1000 hover:scale-105"
         />
